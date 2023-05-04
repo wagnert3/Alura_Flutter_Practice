@@ -15,81 +15,87 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                Container(
-                  color: Colors.red,
-                  width: 100,
-                  height: 100,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Tarefas'),
+          ),
+          body: ListView(children: [
+            Task('Aprender Flutter ssssssssssssssssssssssssssssssss ssssss'),
+            Task('Andar de Bike'),
+            Task('Meditar'),
+            Task('Meditar'),
+            Task('Meditar'),
+            Task('Meditar'),
+            Task('Meditar'),
+          ]),
+          floatingActionButton: FloatingActionButton(onPressed: () {})),
+    );
+  }
+}
+
+// ------ STATELESS WIDGET -------
+
+class Task extends StatefulWidget {
+  final String nome; //variavel para nome da tarefa
+  const Task(this.nome, {super.key});
+  @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  //Constructor
+      int nivel = 0; // variavel para mudar o valor de nivel
+  @override
+  Widget build(BuildContext context) { // tudo da Bild será reescrito
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        child: Stack(children: [
+          Container(
+            color: Colors.blue,
+            height: 140,
+          ),
+          Column(
+            children: [
+              Container(
+                color: Colors.white,
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      color: Colors.black26,
+                      width: 72,
+                      height: 100,
+                    ),
+                    Container(
+                        // Container do texto
+
+                        width: 200,
+                        child: Text(widget.nome,
+                            style: TextStyle(
+                                fontSize: 24,
+                                overflow:
+                                    TextOverflow //texto da tarefa - O overflow colocar tres pontos quando nao couber mais
+                                        .ellipsis))),
+                    ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            // Diz quem esta mudando, fica de olho
+                            nivel++;
+                          });
+                          print(nivel);
+                        },
+                        child: Icon(Icons.arrow_drop_up))
+                  ],
                 ),
-                Container(
-                  color: Colors.blue,
-                  width: 50,
-                  height: 50,
-                ),
-              ],
-            ),
-            Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                Container(
-                  color: Colors.blue,
-                  width: 100,
-                  height: 100,
-                ),
-                Container(
-                  color: Colors.red,
-                  width: 50,
-                  height: 50,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  color: Colors.cyan,
-                  height: 50,
-                  width: 50,
-                ),
-                Container(
-                  color: Colors.pinkAccent,
-                  height: 50,
-                  width: 50,
-                ),
-                Container(
-                  color: Colors.purple,
-                  height: 50,
-                  width: 50,
-                ),
-              ],
-            ),
-            Container(
-              color: Colors.amber,
-              height: 30,
-              width: 300,
-              child: Text(
-                'Diamante Amarelo',
-                style: TextStyle(color: Colors.black, fontSize: 28),
-                textAlign: TextAlign.center,
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                print('Você apertou o botão');
-              },
-              child: Text('Aperte o botão!'),
-            )
-          ],
-        ),
+              Text('Nivel: $nivel',
+                  style: TextStyle(color: Colors.white, fontSize: 16))
+            ],
+          ),
+        ]),
       ),
     );
   }
