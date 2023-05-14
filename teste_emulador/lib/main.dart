@@ -69,24 +69,38 @@ class _TaskState extends State<Task> {
         // Container da tarefa
         child: Stack(children: [
           Container(
-            color: Colors.blue,
+            // Container do fundo
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.blue,
+            ),
             height: 140,
           ),
           Column(
             children: [
               Container(
                 // Container do nome
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Colors.white,
+                ),
                 height: 100,
-                child: Row(
+
+                child: Row( // Row da foto, nome e estrelas
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                         // Container da foto
-                        color: Colors.black26,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: Colors.black26,
+                        ),
                         width: 72,
                         height: 100,
-                        child: Image.network(widget.foto, fit: BoxFit.cover)),
+                        child: ClipRRect( // ClipRRect para cortar a imagem e deixar redonda
+                          borderRadius: BorderRadius.circular(4),
+                          child: Image.network(widget.foto, fit: BoxFit.cover))),
                     Column(
                       //coluna do nome e estrelas
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -170,8 +184,9 @@ class _TaskState extends State<Task> {
                       child: LinearProgressIndicator(
                         // Barra de progresso
                         color: Colors.white,
-                        value: (widget.dificuldade > 0) ? (nivel / widget.dificuldade) /
-                            10 : 1, // Nivel grafico da barra muda de acordo com o numero
+                        value: (widget.dificuldade > 0)
+                            ? (nivel / widget.dificuldade) / 10
+                            : 1, // Nivel grafico da barra muda de acordo com o numero
                       ),
                       width: 200,
                     ),
