@@ -44,9 +44,10 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   //Constructor
-      int nivel = 0; // variavel para mudar o valor de nivel
+  int nivel = 0; // variavel para mudar o valor de nivel
   @override
-  Widget build(BuildContext context) { // tudo da Bild será reescrito
+  Widget build(BuildContext context) {
+    // tudo da Bild será reescrito
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -91,8 +92,28 @@ class _TaskState extends State<Task> {
                   ],
                 ),
               ),
-              Text('Nivel: $nivel',
-                  style: TextStyle(color: Colors.white, fontSize: 16))
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Container(
+                      child: LinearProgressIndicator(
+                        // Barra de progresso
+                        color: Colors.white,
+                        value: nivel /
+                            10, // Nivel grafico da barra muda de acordo com o numero
+                      ),
+                      width: 200,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Nivel: $nivel',
+                        style: TextStyle(color: Colors.white, fontSize: 16)),
+                  ),
+                ],
+              ),
             ],
           ),
         ]),
