@@ -57,6 +57,7 @@ class _TaskState extends State<Task> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        // Container da tarefa
         child: Stack(children: [
           Container(
             color: Colors.blue,
@@ -65,35 +66,76 @@ class _TaskState extends State<Task> {
           Column(
             children: [
               Container(
+                // Container do nome
                 color: Colors.white,
                 height: 100,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container( // Container da foto
+                    Container(
+                        // Container da foto
                         color: Colors.black26,
                         width: 72,
                         height: 100,
                         child: Image.network(widget.foto, fit: BoxFit.cover)),
+                    Column(
+                      //coluna do nome e estrelas
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            // Container do texto
+                            width: 200,
+                            child: Text(widget.nome,
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    overflow:
+                                        TextOverflow //texto da tarefa - O overflow colocar tres pontos quando nao couber mais
+                                            .ellipsis))),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: Colors.blue,
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: Colors.blue,
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: Colors.blue,
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: Colors.blue[100],
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: Colors.blue[100],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                     Container(
-                        // Container do texto
-
-                        width: 200,
-                        child: Text(widget.nome,
-                            style: TextStyle(
-                                fontSize: 24,
-                                overflow:
-                                    TextOverflow //texto da tarefa - O overflow colocar tres pontos quando nao couber mais
-                                        .ellipsis))),
-                    ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            // Diz quem esta mudando, fica de olho
-                            nivel++;
-                          });
-                          print(nivel);
-                        },
-                        child: Icon(Icons.arrow_drop_up))
+                      height: 52,
+                      width: 52,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              // Diz quem esta mudando, fica de olho
+                              nivel++;
+                            });
+                            print(nivel);
+                          },
+                          child: Icon(Icons.arrow_drop_up)),
+                    )
                   ],
                 ),
               ),
